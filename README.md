@@ -18,5 +18,7 @@ Anyone who wants to collaborate is very welcome!
 By now, you don't need additional libraries in order to compile sources, any compiler
 should work as well. 
 Inside src/ folder, run:
-	g++ *.cpp -o mine-field
-	./mine-field
+```
+g++ *.cpp -o mine-field
+./mine-field
+```
