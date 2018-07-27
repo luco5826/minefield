@@ -1,5 +1,23 @@
 #include "include/Field.h"
 
+Field::Field(const int width = 10, const int height = 10, const int mines = 20)
+{
+
+    this->width = width;
+    this->height = height;
+    this->mines = mines;
+	
+    //Building the field (matrix[height][width])
+    this->field = new Cell *[height];
+    for (size_t i = 0; i < this->height; i++)
+    {
+        this->field[i] = new Cell[width];
+    }
+	
+    this->addMines(); //Adds randomly placed mines
+    this->setupCells(); //Set numbers on near-mines-cells
+}
+
 void Field::addMines()
 {
     int minesPlaced = 0;
@@ -11,7 +29,7 @@ void Field::addMines()
         int position = rand() % (width * height);       //Es. position = 38 (width 7, height 10)
         int positionY = position / (width);             //    positionY = 38 / 7 = 5 (6th row from the top)
         int positionX = position - (positionY * width); //    positionX = 38 - (5 * 7) = 3 (4th element in the row)
-
+		
         //The order of (y, x) instead of (x, y) is due to a different rappresentation of the field,
         //we need to access row THEN column, so it's Y-position THEN X-position
         if (!getCell(positionY, positionX)->isMined())
@@ -26,9 +44,9 @@ void Field::setupCells()
 {
     //Searches through the field, when it finds a MINED cell, increment by one
     //the value "nearMines" of near cells
-    for (size_t i = 0; i < this->width; i++)
+    for (size_t i = 0; i < this->height; i++)
     {
-        for (size_t j = 0; j < this->height; j++)
+        for (size_t j = 0; j < this->width; j++)
         {
             //Extraction (readability)
             Cell current = *getCell(i, j);
@@ -66,16 +84,17 @@ void Field::setupCells()
             }
         }
     }
+
 }
 
 void Field::updateCells()
 {
     //Searches through the field, when it finds a VISIBLE cell, set as Visible
     //also the surrounding cells
-    for (size_t i = 0; i < this->width; i++)
+    for (size_t i = 0; i < this->height; i++)
     {
 
-        for (size_t j = 0; j < this->height; j++)
+        for (size_t j = 0; j < this->width; j++)
         {
             //Extraction (readability)
             Cell current = *getCell(i, j);
@@ -120,24 +139,6 @@ void Field::updateCells()
             }
         }
     }
-}
-
-Field::Field(const int width = 10, const int height = 10, const int mines = 20)
-{
-
-    this->width = width;
-    this->height = height;
-    this->mines = mines;
-
-    //Building the field (matrix[height][width])
-    this->field = new Cell *[height];
-    for (size_t i = 0; i < this->height; i++)
-    {
-        this->field[i] = new Cell[width];
-    }
-
-    this->addMines();
-    this->setupCells();
 }
 
 bool Field::selectCell(const int row, const int column)
