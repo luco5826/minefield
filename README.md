@@ -13,3 +13,10 @@ Anyone who wants to collaborate is very welcome!
 ### To be implemented
 * Smart revealing of the field around the selected cell
 * GUI
+
+### Compiling
+By now, you don't need additional libraries in order to compile sources, any compiler
+should work as well. 
+Inside src/ folder, run:
+	g++ *.cpp -o mine-field
+	./mine-field

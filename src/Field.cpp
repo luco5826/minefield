@@ -98,7 +98,7 @@ void Field::updateCells()
         {
             //Extraction (readability)
             Cell current = *getCell(i, j);
-            if (current.isVisible())
+            if (current.isVisible() && current.getNearMines() == 0)
             {
                 //TODO: I need to find a way to clear this mess
                 //Version 1.0 -> I used pointers in order to be able to 
@@ -113,29 +113,29 @@ void Field::updateCells()
                 if (toMakeVisible != nullptr && !toMakeVisible->isMined())
                     toMakeVisible->setVisible(true);
 
-                toMakeVisible = getCell(i - 1, j - 1); //upper left
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
-                    toMakeVisible->setVisible(true);
+                // toMakeVisible = getCell(i - 1, j - 1); //upper left
+                // if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                //     toMakeVisible->setVisible(true);
 
                 toMakeVisible = getCell(i - 1, j); //upper
                 if (toMakeVisible != nullptr && !toMakeVisible->isMined())
                     toMakeVisible->setVisible(true);
 
-                toMakeVisible = getCell(i - 1, j + 1); //upper right
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
-                    toMakeVisible->setVisible(true);
+                // toMakeVisible = getCell(i - 1, j + 1); //upper right
+                // if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                //     toMakeVisible->setVisible(true);
 
-                toMakeVisible = getCell(i + 1, j - 1); //lower left
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
-                    toMakeVisible->setVisible(true);
+                // toMakeVisible = getCell(i + 1, j - 1); //lower left
+                // if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                //     toMakeVisible->setVisible(true);
 
                 toMakeVisible = getCell(i + 1, j); //lower
                 if (toMakeVisible != nullptr && !toMakeVisible->isMined())
                     toMakeVisible->setVisible(true);
 
-                toMakeVisible = getCell(i + 1, j + 1); //lower right
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
-                    toMakeVisible->setVisible(true);
+                // toMakeVisible = getCell(i + 1, j + 1); //lower right
+                // if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                //     toMakeVisible->setVisible(true);
             }
         }
     }
@@ -144,6 +144,8 @@ void Field::updateCells()
 bool Field::selectCell(const int row, const int column)
 {
     Cell *selected = getCell(row, column);
+	if (selected == nullptr)
+		return false;
     if (selected->isMined())
         return true;
     selected->setVisible(true);
@@ -180,16 +182,16 @@ void Field::printField()
             {
                 if (current.getNearMines() == 0)
                 {
-                    std::cout << " +  ";
+                    std::cout << "  +  ";
                 }
                 else
                 {
-                    std::cout << "  " << current.getNearMines() << " ";
+                    std::cout << "  " << current.getNearMines() << "  ";
                 }
             }
             else
             {
-                std::cout << " [] ";
+                std::cout << " [ ] ";
             }
         }
         std::cout << std::endl;
