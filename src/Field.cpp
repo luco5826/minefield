@@ -52,7 +52,6 @@ void Field::setupCells()
             Cell current = *getCell(i, j);
             if (current.isMined())
             {
-                //TODO: I need to find a way to clear this mess
                 //Version 1.0 -> I used pointers in order to be able to
                 //get a nullptr from getCell() when the index gets out of the field range
                 Cell *toBeIncremented = nullptr;
@@ -88,39 +87,63 @@ void Field::setupCells()
 
 void Field::updateCells()
 {
-    //Searches through the field, when it finds a VISIBLE cell, set as Visible
-    //also the surrounding cells
-    for (size_t i = 0; i < this->height; i++)
+    //Trying to find a way to show cells when the user choose one of them
+    for (int i = 0; i < this->height; i++)
     {
+        bool wentBackLeft = false;
+        bool wentBackUp = false;
 
         for (size_t j = 0; j < this->width; j++)
         {
             //Extraction (readability)
             Cell current = *getCell(i, j);
-            if (current.isVisible() && current.getNearMines() == 0)
+            if (current.isVisible())
             {
-                //TODO: I need to find a way to clear this mess
-                //Version 1.0 -> I used pointers in order to be able to
-                //get a nullptr from getCell() when the index gets out of the field range
                 Cell *toMakeVisible = nullptr;
+                int offset = 1;
 
-                toMakeVisible = getCell(i, j - 1); //left
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                while ((toMakeVisible = getCell(i, j + offset)) != nullptr && !toMakeVisible->isMined())
+                {
                     toMakeVisible->setVisible(true);
+                    if (toMakeVisible->getNearMines() != 0)
+                        break;
+                    offset++;
+                }
+                offset = 1;
 
-                toMakeVisible = getCell(i, j + 1); //right
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                while ((toMakeVisible = getCell(i, j - offset)) != nullptr && !toMakeVisible->isMined())
+                {
                     toMakeVisible->setVisible(true);
+                    if (toMakeVisible->getNearMines() != 0)
+                        break;
 
-                toMakeVisible = getCell(i - 1, j); //upper
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
-                    toMakeVisible->setVisible(true);
+                    offset++;
+                }
+                offset = 1;
 
-                toMakeVisible = getCell(i + 1, j); //lower
-                if (toMakeVisible != nullptr && !toMakeVisible->isMined())
+                while ((toMakeVisible = getCell(i + offset, j)) != nullptr && !toMakeVisible->isMined())
+                {
                     toMakeVisible->setVisible(true);
+                    if (toMakeVisible->getNearMines() != 0)
+                        break;
+                    offset++;
+                }
+                offset = 1;
+
+                while ((toMakeVisible = getCell(i - offset, j)) != nullptr && !toMakeVisible->isMined())
+                {
+                    toMakeVisible->setVisible(true);
+                    if (toMakeVisible->getNearMines() != 0)
+                        break;
+
+                    offset++;
+                }
             }
         }
+        if (wentBackLeft) //Restart from the beginning of this row
+            i--;
+        if (wentBackUp) //Restart from the beginning of the matrix
+            i = -1;
     }
 }
 
