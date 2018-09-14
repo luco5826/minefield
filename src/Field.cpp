@@ -25,7 +25,7 @@ void Field::addMines()
     srand(time(NULL));
     while (minesPlaced != mines)
     {
-        //Using Integer division
+        //Using Integer division (it's simpler than it seems)
         int position = rand() % (width * height);       //Eg. position  = 38 (width 7, height 10)
         int positionY = position / (width);             //    positionY = 38 / 7 = 5 (6th row from the top)
         int positionX = position - (positionY * width); //    positionX = 38 - (5 * 7) = 3 (4th element in the row)
@@ -43,7 +43,7 @@ void Field::addMines()
 void Field::setupCells()
 {
     //Searches through the field, when it finds a MINED cell, increment by one
-    //the value "nearMines" of near cells
+    //the value "nearMines" of near cells (in the 3x3 surrounding grid)
     for (size_t i = 0; i < this->height; i++)
     {
         for (size_t j = 0; j < this->width; j++)
@@ -54,6 +54,7 @@ void Field::setupCells()
             {
                 //Version 1.0 -> I used pointers in order to be able to
                 //get a nullptr from getCell() when the index gets out of the field range
+				//and avoid any segmentation trouble
                 Cell *toBeIncremented = nullptr;
 
                 toBeIncremented = getCell(i, j - 1); //left
@@ -87,12 +88,8 @@ void Field::setupCells()
 
 void Field::updateCells()
 {
-    //Trying to find a way to show cells when the user choose one of them
     for (int i = 0; i < this->height; i++)
     {
-        bool wentBackLeft = false;
-        bool wentBackUp = false;
-
         for (size_t j = 0; j < this->width; j++)
         {
             //Extraction (readability)
@@ -101,49 +98,14 @@ void Field::updateCells()
             {
                 Cell *toMakeVisible = nullptr;
                 int offset = 1;
-
-                while ((toMakeVisible = getCell(i, j + offset)) != nullptr && !toMakeVisible->isMined())
-                {
-                    toMakeVisible->setVisible(true);
-                    if (toMakeVisible->getNearMines() != 0)
-                        break;
-                    offset++;
-                }
-                offset = 1;
-
-                while ((toMakeVisible = getCell(i, j - offset)) != nullptr && !toMakeVisible->isMined())
-                {
-                    toMakeVisible->setVisible(true);
-                    if (toMakeVisible->getNearMines() != 0)
-                        break;
-
-                    offset++;
-                }
-                offset = 1;
-
-                while ((toMakeVisible = getCell(i + offset, j)) != nullptr && !toMakeVisible->isMined())
-                {
-                    toMakeVisible->setVisible(true);
-                    if (toMakeVisible->getNearMines() != 0)
-                        break;
-                    offset++;
-                }
-                offset = 1;
-
-                while ((toMakeVisible = getCell(i - offset, j)) != nullptr && !toMakeVisible->isMined())
-                {
-                    toMakeVisible->setVisible(true);
-                    if (toMakeVisible->getNearMines() != 0)
-                        break;
-
-                    offset++;
+				
+				//BASTA CHE SE UNA CELLA HA NEARMINES = 0, ALLORA SI MOSTRANO LE
+				//9 CELLE CIRCOSTANTI! ABBIAMO RISOLTO OGNI PROBLEMAAAAA
+               
                 }
             }
         }
-        if (wentBackLeft) //Restart from the beginning of this row
-            i--;
-        if (wentBackUp) //Restart from the beginning of the matrix
-            i = -1;
+
     }
 }
 

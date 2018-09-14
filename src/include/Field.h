@@ -2,6 +2,7 @@
 #define FIELD_H
 
 #include <iostream>
+#include <time.h>
 #include "Cell.h"
 
 
@@ -29,7 +30,9 @@ class Field
     */
     Field(const int width, const int height, int mines);
 
-    //
+    /*
+	Returns true if the selected cell is mined, false otherwise
+	*/
     bool selectCell(const int row, const int column);
 
     /*
