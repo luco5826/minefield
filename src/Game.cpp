@@ -22,18 +22,18 @@ void Game::askForInput()
     int row, column;
     std::string input = "";
     {
-        std::cout << "Insert row: ";
+        std::cout << "Insert row (1 - " << this->field->getHeight() << "): ";
         std::getline(std::cin, input);
         std::stringstream ss(input);
         ss >> row;
     }
     {
-        std::cout << "Insert column: ";
+        std::cout << "Insert column(1 - " << this->field->getWidth() << "): " ;
         std::getline(std::cin, input);
         std::stringstream ss(input);
         ss >> column;
     }
 
-    minePressed = this->field->selectCell(row, column);
+    minePressed = this->field->selectCell(row - 1, column - 1);
     this->field->printField();
 }

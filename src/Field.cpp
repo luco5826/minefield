@@ -20,9 +20,9 @@ Field::Field(const int width = 10, const int height = 10, const int mines = 20)
 
 void Field::addMines()
 {
+    srand(time(NULL));
     int minesPlaced = 0;
 
-    srand(time(NULL));
     while (minesPlaced != mines)
     {
         //Using Integer division (it's simpler than it seems)
@@ -52,61 +52,82 @@ void Field::setupCells()
             Cell current = *getCell(i, j);
             if (current.isMined())
             {
-                //Version 1.0 -> I used pointers in order to be able to
-                //get a nullptr from getCell() when the index gets out of the field range
-				//and avoid any segmentation trouble
-                Cell *toBeIncremented = nullptr;
-
-                toBeIncremented = getCell(i, j - 1); //left
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i, j + 1); //right
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i - 1, j - 1); //upper left
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i - 1, j); //upper
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i - 1, j + 1); //upper right
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i + 1, j - 1); //lower left
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i + 1, j); //lower
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
-                toBeIncremented = getCell(i + 1, j + 1); //lower right
-                if (toBeIncremented != nullptr)
-                    toBeIncremented->incrementNearMines();
+                this->incrementSurroundingGrid(i, j);
             }
+        }
+    }
+}
+
+void Field::incrementSurroundingGrid(const int i, const int j)
+{
+    //Surrounding cells disposition
+    //-1 -1 | -1 0 | -1 +1
+    // 0 -1 |  0 0 |  0 +1
+    //+1 -1 | +1 0 | +1 +1
+    for (int a = i - 1; a <= i + 1; a++)
+    {
+        for (int b = j - 1; b <= j + 1; b++)
+        {
+            Cell *toBeIncremented = getCell(a, b);
+            if (toBeIncremented != nullptr)
+                toBeIncremented->incrementNearMines();
         }
     }
 }
 
 void Field::updateCells()
 {
+
     for (int i = 0; i < this->height; i++)
     {
-        for (size_t j = 0; j < this->width; j++)
+        bool restart = false; // See below
+
+        for (int j = 0; j < this->width; j++)
         {
             //Extraction (readability)
-            Cell current = *getCell(i, j);
-            if (current.isVisible())
+            Cell *current = getCell(i, j);
+            if (current->isVisible() && current->isAnEmptyCell())
             {
-                Cell *toMakeVisible = nullptr;
-                int offset = 1;
-				
-				//BASTA CHE SE UNA CELLA HA NEARMINES = 0, ALLORA SI MOSTRANO LE
-				//9 CELLE CIRCOSTANTI! ABBIAMO RISOLTO OGNI PROBLEMAAAAA
-               
+
+                if (!current->isRevealed())
+                {
+                    current->setRevealed(true);
+                    restart = revealSurroundingGrid(i, j); //See function definition (Field.h)
+
+                    //We start from the first row, but if we reveal a cell which has already been
+                    //examinated (e.g. the left one from the current Cell), we loose that "update", so we restart from the beginning
+                    if (restart)
+                    {
+                        i = -1;
+                        break;
+                    }
                 }
             }
         }
-
     }
+}
+
+bool Field::revealSurroundingGrid(const int i, const int j)
+{
+    bool restart = false;
+    //Surrounding cells disposition
+    //-1 -1 | -1 0 | -1 +1
+    // 0 -1 |  0 0 |  0 +1
+    //+1 -1 | +1 0 | +1 +1
+    for (int a = i - 1; a <= i + 1; a++)
+    {
+        for (int b = j - 1; b <= j + 1; b++)
+        {
+            Cell *toMakeVisible = getCell(a, b);
+            if (toMakeVisible != nullptr && !toMakeVisible->isVisible())
+            {
+                toMakeVisible->setVisible(true);
+                restart = true;
+            }
+        }
+    }
+
+    return restart;
 }
 
 bool Field::selectCell(const int row, const int column)
@@ -114,11 +135,11 @@ bool Field::selectCell(const int row, const int column)
     Cell *selected = this->getCell(row, column);
     if (selected == nullptr)
         return false;
+
     if (selected->isMined())
         return true;
 
     selected->setVisible(true);
-
     this->updateCells();
     return false;
 }
@@ -138,10 +159,37 @@ Cell *Field::getCell(int y, int x)
     return &this->field[y][x];
 }
 
+int Field::getWidth(){
+    return this->width;
+}
+
+int Field::getHeight(){
+    return this->height;
+}
+
 void Field::printField()
 {
+    std::cout << "     ";
+    for (size_t colIndex = 1; colIndex <= this->width; colIndex++)
+    {
+        if (colIndex < 10)
+        {
+            std::cout << "  " << colIndex << "  ";
+        }
+        else
+        {
+            std::cout << " " << colIndex << "  ";
+        }
+    }
+    std::cout << std::endl << std::endl;
     for (size_t i = 0; i < this->height; i++)
     {
+        if (i < 9)
+        {
+            std::cout << "  " << i + 1 << "  ";
+        } else {
+            std::cout << " " << i + 1 << "  ";
+        }
 
         for (size_t j = 0; j < this->width; j++)
         {
@@ -151,7 +199,7 @@ void Field::printField()
             {
                 if (current.getNearMines() == 0)
                 {
-                    std::cout << "  +  ";
+                    std::cout << "     ";
                 }
                 else
                 {

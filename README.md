@@ -6,12 +6,17 @@ I just wanted to refresh some c++ I learned some times ago, my goal
 is to create a simple app based on this engine, maybe with a GUI.
 Anyone who wants to collaborate is very welcome!
 
+### Collab \w me!
+You are free to partecipate! Everything in the code is well commented and documented, 
+I tried to follow an OOP pattern in order to keep the mess away. If you have questions 
+about anything I'd be glad to explain it to you in a better way!
+
 ### Actual Features
 * Create a field with user-defined size
 * Mark with numbers cells that are nearby a mine
+* Ask for selection and consequent cells' revelation
 
 ### To be implemented
-* Smart revealing of the field around the selected cell
 * GUI
 
 ### Compiling

@@ -1,3 +1,0 @@
-RIVELAZIONE CELLE ADIACENTI
-A partire dalla cella selezionata, si controllano le 9 celle adiacenti e tramite 9 condizioni
-booleane si scopre quando la rivelazione lungo una direzione può terminare
