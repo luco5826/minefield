@@ -6,4 +6,4 @@
 
 void readFromTerminal(int* width, int* height, int* mines);
 
-#endif //UTILS_H
+#endif  //UTILS_H

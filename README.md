@@ -20,10 +20,9 @@ about anything I'd be glad to explain it to you in a better way!
 * GUI
 
 ### Compiling
-By now, you don't need additional libraries in order to compile sources, any compiler
-should work as well. 
-Inside src/ folder, run:
+You don't need any other library in order to compile it, but if you have g++ installed, you can run:
 ```
-g++ *.cpp -o mine-field
-./mine-field
+make && make clean
+./minefield
 ```
+Otherwise you can compile all the .cpp files however you want!

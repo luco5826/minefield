@@ -1,24 +1,20 @@
 
 #include "include/Game.h"
 
-Game::Game(const int width, const int height, const int mines)
-{
+Game::Game(const int width, const int height, const int mines) {
     this->field = new Field(width, height, mines);
     std::cout << "Field created" << std::endl;
     this->field->printField();
 }
 
-Game::~Game()
-{
+Game::~Game() {
     delete this->field;
 }
-bool Game::isFinished()
-{
+bool Game::isFinished() {
     return minePressed;
 }
 
-void Game::askForInput()
-{
+void Game::askForInput() {
     int row, column;
     std::string input = "";
     {
@@ -28,7 +24,7 @@ void Game::askForInput()
         ss >> row;
     }
     {
-        std::cout << "Insert column(1 - " << this->field->getWidth() << "): " ;
+        std::cout << "Insert column(1 - " << this->field->getWidth() << "): ";
         std::getline(std::cin, input);
         std::stringstream ss(input);
         ss >> column;

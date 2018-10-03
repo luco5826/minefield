@@ -2,47 +2,47 @@
 
 /**
  * 
- * Implementation Cell.h's functions, see header
+ * Implementation of Cell.h's functions, see header
  * file for complete explanation
  *  
  */
 
-void Cell::setMine(){
+void Cell::setMine() {
     this->mined = true;
 }
 
-bool Cell::isMined(){
-        return this->mined;
+bool Cell::isMined() {
+    return this->mined;
 }
 
-bool Cell::isVisible(){
-        return this->visible;
+bool Cell::isVisible() {
+    return this->visible;
 }
 
-bool Cell::isRevealed(){
-        return this->revealed;
+bool Cell::isRevealed() {
+    return this->revealed;
 }
 
-void Cell::setRevealed(const bool revealed){
-        this->revealed = revealed;
+void Cell::setRevealed(const bool revealed) {
+    this->revealed = revealed;
 }
 
-bool Cell::isAnEmptyCell(){
-        return this->getNearMines() == 0 && !this->isMined();
+bool Cell::isAnEmptyCell() {
+    return this->getNearMines() == 0 && !this->isMined();
 }
 
-void Cell::setVisible(const bool visible){
-        this->visible = visible;
+void Cell::setVisible(const bool visible) {
+    this->visible = visible;
 }
 
-int Cell::getNearMines(){
-        return this->nearMines;
+int Cell::getNearMines() {
+    return this->nearMines;
 }
 
-void Cell::setNearMines(int num){
-        this->nearMines = num;
+void Cell::setNearMines(int num) {
+    this->nearMines = num;
 }
 
-void Cell::incrementNearMines(){
-        this->nearMines++;
+void Cell::incrementNearMines() {
+    this->nearMines++;
 }
