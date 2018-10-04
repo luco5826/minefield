@@ -15,6 +15,14 @@ bool Cell::isMined() {
     return this->mined;
 }
 
+bool Cell::isFlagged() {
+    return this->flagged;
+}
+
+bool Cell::setFlag(const bool flagged) {
+    this->flagged = flagged;
+}
+
 bool Cell::isVisible() {
     return this->visible;
 }

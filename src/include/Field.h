@@ -47,16 +47,29 @@ class Field {
 
    public:
     /**
+     * When a Cell is selected by the user, it is either selected to be revealed,
+     * or to be flagged as "mined"
+     */
+    enum SelectOption { REVEAL,
+                        FLAG };
+
+    /**
      * Field Constructor, create a matrix WIDTH x HEIGHT and fills
      * it with mines
      */
     Field(const int width, const int height, int mines);
 
     /**
-	   * Returns true if the selected cell is mined, false otherwise,
+	 * Returns true if the selected cell is mined, false otherwise,
      * once called, it updates the table
-	   */
-    bool selectCell(const int row, const int column);
+	 */
+    bool selectCell(const int row, const int column, Field::SelectOption &option);
+
+    /**
+     * Check if the number of unrevealed Cells equals to
+     * the number of the total mines in the Field
+     */
+    bool checkVictory();
 
     /**
      * Returns the number of mines in this field
@@ -67,7 +80,7 @@ class Field {
      * Returns the cell in position y, x (row, column), returns a nullptr
      * if given values are out of range
      */
-    Cell *getCell(int y, int x);
+    Cell *getCell(const int y, const int x);
 
     /**
      * Returns the height of the table

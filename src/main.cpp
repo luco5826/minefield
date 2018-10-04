@@ -10,10 +10,19 @@ int main() {
 
     Game *game = new Game(width, height, mines);
 
-    while (!game->isFinished()) {
+    while (!game->userHasWon() && !game->mineIsPressed()) {
+        game->printField();
         game->askForInput();
+        game->checkVictory();
     }
 
-    std::cout << "MINE PRESSED::GAME FINISHED" << std::endl;
+    if (game->userHasWon()) {
+        std::cout << "YOU WON!!!::GAME FINISHED" << std::endl;
+    } else {
+        std::cout << "MINE PRESSED::GAME FINISHED" << std::endl;
+    }
+
+    delete game;
+
     return 0;
 }

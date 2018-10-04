@@ -112,24 +112,42 @@ bool Field::revealSurroundingGrid(const int i, const int j) {
     return restart;
 }
 
-bool Field::selectCell(const int row, const int column) {
+bool Field::selectCell(const int row, const int column, Field::SelectOption &option) {
     Cell *selected = this->getCell(row, column);
+
     if (selected == nullptr)
         return false;
 
-    if (selected->isMined())
-        return true;
-
-    selected->setVisible(true);
-    this->updateCells();
+    if (option == Field::SelectOption::REVEAL) {  //Reveal selected Cell
+        if (selected->isMined())
+            return true;
+        selected->setVisible(true);
+        this->updateCells();
+    } else if (option == Field::SelectOption::FLAG) {  //Just flag selected cell
+        selected->setFlag(true);
+    }
     return false;
+}
+
+bool Field::checkVictory() {
+    int unrevealedCell = 0;
+
+    for (int i = 0; i < this->height; i++) {
+        for (int j = 0; j < this->width; j++) {
+            if (!(getCell(i, j)->isVisible())) {
+                unrevealedCell++;
+            }
+        }
+    }
+
+    return unrevealedCell == this->getMines();
 }
 
 int Field::getMines() {
     return this->mines;
 }
 
-Cell *Field::getCell(int y, int x) {
+Cell *Field::getCell(const int y, const int x) {
     if (y < 0 || x < 0 || y >= height || x >= width) {
         return nullptr;
     }
@@ -171,6 +189,8 @@ void Field::printField() {
                 } else {
                     std::cout << "  " << current.getNearMines() << "  ";
                 }
+            } else if (current.isFlagged()) {
+                std::cout << " [X] ";
             } else {
                 std::cout << " [ ] ";
             }

@@ -8,6 +8,7 @@
 class Cell {
    private:
     bool mined = false;
+    bool flagged = false;
     bool visible = false;
     bool revealed = false;
     int nearMines = 0;
@@ -22,6 +23,16 @@ class Cell {
      * True if this Cell has a mine, false otherwise
      */
     bool isMined();
+
+    /**
+     * True if this Cell has been flagged as "mined" by the user
+     */
+    bool isFlagged();
+
+    /**
+     * Flag or unflag this Cell
+     */
+    bool setFlag(const bool flagged);
 
     /**
      * True if this Cell has been set to Visible, false otherwise
