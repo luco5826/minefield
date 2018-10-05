@@ -7,7 +7,7 @@
 
 /**
  * 
- * Game Field, contains a cell table and populates it on construcition
+ * Game Field, contains a cell table and populates it on construction
  *  
  */
 class Field {
@@ -63,7 +63,7 @@ class Field {
 	 * Returns true if the selected cell is mined, false otherwise,
      * once called, it updates the table
 	 */
-    bool selectCell(const int row, const int column, Field::SelectOption &option);
+    bool selectCell(const int row, const int column, Field::SelectOption option);
 
     /**
      * Check if the number of unrevealed Cells equals to

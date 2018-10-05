@@ -82,7 +82,7 @@ void Field::updateCells() {
                     restart = revealSurroundingGrid(i, j);  //See function definition (Field.h)
 
                     //We start from the first row, but if we reveal a cell which has already been
-                    //examinated (e.g. the left one from the current Cell), we loose that "update", so we restart from the beginning
+                    //examined (e.g. the left one from the current Cell), we loose that "update", so we restart from the beginning
                     if (restart) {
                         i == 0 ? i-- : i -= 2;
                         break;
@@ -112,7 +112,7 @@ bool Field::revealSurroundingGrid(const int i, const int j) {
     return restart;
 }
 
-bool Field::selectCell(const int row, const int column, Field::SelectOption &option) {
+bool Field::selectCell(const int row, const int column, Field::SelectOption option) {
     Cell *selected = this->getCell(row, column);
 
     if (selected == nullptr)
