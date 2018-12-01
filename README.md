@@ -1,4 +1,6 @@
-# Minefield
+# Minefield 
+[![Build Status](https://travis-ci.com/luco5826/minefield.svg?branch=master)](https://travis-ci.org/luco5826/minefield)
+
 Hi! This is a simple Mine Field creation engine (as the description says).
 
 #### Goals
