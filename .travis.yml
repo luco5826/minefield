@@ -1,3 +1,4 @@
-language: c++
-rvm:
- - 8.2
+language: cpp
+compiler: gcc
+build_command: "make"
+script: "make"
