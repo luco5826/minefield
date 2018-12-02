@@ -32,7 +32,7 @@ class Cell {
     /**
      * Flag or unflag this Cell
      */
-    bool setFlag(const bool flagged);
+    void setFlag(const bool flagged);
 
     /**
      * True if this Cell has been set to Visible, false otherwise

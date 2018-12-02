@@ -19,7 +19,7 @@ bool Cell::isFlagged() {
     return this->flagged;
 }
 
-bool Cell::setFlag(const bool flagged) {
+void Cell::setFlag(const bool flagged) {
     this->flagged = flagged;
 }
 
