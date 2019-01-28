@@ -18,9 +18,13 @@ int main() {
     }
 
     if (game->userHasWon()) {
+        std::cout << std::endl;
         std::cout << "YOU WON!!!::GAME FINISHED" << std::endl;
+        std::cout << std::endl;
     } else {
+        std::cout << std::endl;
         std::cout << "MINE PRESSED::GAME FINISHED" << std::endl;
+        std::cout << std::endl;
     }
 
     return 0;
