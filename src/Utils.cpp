@@ -1,4 +1,4 @@
-#include "include/Utils.h"
+#include "Utils.h"
 
 void readFromTerminal(int *width, int *height, int *mines) {
     std::string input = "";

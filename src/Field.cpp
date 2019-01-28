@@ -1,4 +1,4 @@
-#include "include/Field.h"
+#include "Field.h"
 
 /**
  * 
@@ -20,6 +20,14 @@ Field::Field(const int width = 10, const int height = 10, const int mines = 20) 
 
     this->addMines();    //Adds randomly placed mines
     this->setupCells();  //Set numbers on near-mines-cells
+}
+
+Field::~Field(){
+    
+    for (size_t i = 0; i < this->height; i++) {
+        delete[] this->field[i];
+    }
+    delete[] this->field;
 }
 
 void Field::addMines() {

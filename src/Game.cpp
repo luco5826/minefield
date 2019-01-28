@@ -1,5 +1,5 @@
 
-#include "include/Game.h"
+#include "Game.h"
 
 Game::Game(const int width, const int height, const int mines) {
     this->field = new Field(width, height, mines);

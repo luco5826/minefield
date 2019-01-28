@@ -1,8 +1,8 @@
 #include <iostream>
-#include "include/Cell.h"
-#include "include/Field.h"
-#include "include/Game.h"
-#include "include/Utils.h"
+#include "Cell.h"
+#include "Field.h"
+#include "Game.h"
+#include "Utils.h"
 
 int main() {
     int width = 0, height = 0, mines = 0;

@@ -59,6 +59,8 @@ class Field {
      */
     Field(const int width, const int height, int mines);
 
+    ~Field();
+
     /**
 	 * Returns true if the selected cell is mined, false otherwise,
      * once called, it updates the table
