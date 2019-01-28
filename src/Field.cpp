@@ -22,8 +22,7 @@ Field::Field(const int width = 10, const int height = 10, const int mines = 20) 
     this->setupCells();  //Set numbers on near-mines-cells
 }
 
-Field::~Field(){
-    
+Field::~Field() {
     for (size_t i = 0; i < this->height; i++) {
         delete[] this->field[i];
     }
@@ -84,19 +83,17 @@ void Field::updateCells() {
         for (int j = 0; j < this->width; j++) {
             //Extraction (readability)
             Cell *current = getCell(i, j);
-            //We reveal the surrounding grid only for cells that are marked as 'visible' and aren't 
+            //We reveal the surrounding grid only for cells that are marked as 'visible' and aren't
             //next to a mine, otherwise we would reveal a mine!
-            if (current->isVisible() && current->isAnEmptyCell()) {
-                if (!current->isRevealed()) {
-                    current->setRevealed(true);
-                    restart = revealSurroundingGrid(i, j);  //See function definition (Field.h)
+            if (current->isVisible() && current->isAnEmptyCell() && !current->isRevealed()) {
+                current->setRevealed(true);
+                restart = revealSurroundingGrid(i, j);  //See function definition (Field.h)
 
-                    //We start from the first row, but if we reveal a cell near to one which has already been
-                    //examined (e.g. the left one from the current Cell), we loose that "update", so we restart from two lines above
-                    if (restart) {
-                        i == 0 ? i-- : i -= 2;
-                        break;
-                    }
+                //We start from the first row, but if we reveal a cell near to one which has already been
+                //examined (e.g. the left one from the current Cell), we loose that "update", so we restart from two lines above
+                if (restart) {
+                    i == 0 ? i-- : i -= 2;
+                    break;
                 }
             }
         }
@@ -150,7 +147,7 @@ bool Field::checkVictory() {
         }
     }
 
-    //When the unrevealed cells are equals to the total number 
+    //When the unrevealed cells are equals to the total number
     //of mines, it means that the user won!
     return unrevealedCell == this->getMines();
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "Cell.h"
 #include "Field.h"
 #include "Game.h"
@@ -8,7 +9,7 @@ int main() {
     int width = 0, height = 0, mines = 0;
     readFromTerminal(&width, &height, &mines);
 
-    Game *game = new Game(width, height, mines);
+    std::shared_ptr<Game> game = std::make_shared<Game>(width, height, mines);
 
     while (!game->userHasWon() && !game->mineIsPressed()) {
         game->printField();
@@ -21,8 +22,6 @@ int main() {
     } else {
         std::cout << "MINE PRESSED::GAME FINISHED" << std::endl;
     }
-
-    delete game;
 
     return 0;
 }
