@@ -22,7 +22,7 @@ about anything I'd be glad to explain it to you in a better way!
 * GUI
 
 ### Compiling
-You don't need any other library in order to compile it, but if you have g++ installed, you can run:
+For the simple GUI to work, you will need `ncurses` installed, then you can simply run:
 ```
 make && make clean
 ./minefield
