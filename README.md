@@ -24,7 +24,6 @@ about anything I'd be glad to explain it to you in a better way!
 ### Compiling
 For the simple GUI to work, you will need `ncurses` installed, then you can simply run:
 ```
-make && make clean
-./minefield
+make && ./minefield
 ```
 Otherwise you can compile all the .cpp files however you want!
