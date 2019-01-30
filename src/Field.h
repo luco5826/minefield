@@ -3,6 +3,7 @@
 
 #include <time.h>
 #include <iostream>
+#include <sstream>
 #include "Cell.h"
 
 /**
@@ -95,9 +96,9 @@ class Field {
     int getWidth();
 
     /**
-     * Prints the field
+     * Returns the field
      */
-    void printField();
+    std::string printField();
 };
 
 #endif  //FIELD_H

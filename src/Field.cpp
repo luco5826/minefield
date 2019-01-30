@@ -172,38 +172,40 @@ int Field::getHeight() {
     return this->height;
 }
 
-void Field::printField() {
-    std::cout << "     ";
+std::string Field::printField() {
+    std::stringstream ss;
+    ss << "     ";
     for (size_t colIndex = 1; colIndex <= this->width; colIndex++) {
         if (colIndex < 10) {
-            std::cout << "  " << colIndex << "  ";
+            ss << "  " << colIndex << "  ";
         } else {
-            std::cout << " " << colIndex << "  ";
+            ss << " " << colIndex << "  ";
         }
     }
-    std::cout << std::endl
-              << std::endl;
+    ss << std::endl << std::endl;
     for (size_t i = 0; i < this->height; i++) {
         if (i < 9) {
-            std::cout << "  " << i + 1 << "  ";
+            ss << "  " << i + 1 << "  ";
         } else {
-            std::cout << " " << i + 1 << "  ";
+            ss << " " << i + 1 << "  ";
         }
 
         for (size_t j = 0; j < this->width; j++) {
             Cell current = *getCell(i, j);
             if (current.isVisible()) {
                 if (current.getNearMines() == 0) {
-                    std::cout << "     ";
+                    ss << "     ";
                 } else {
-                    std::cout << "  " << current.getNearMines() << "  ";
+                    ss << "  " << current.getNearMines() << "  ";
                 }
             } else if (current.isFlagged()) {
-                std::cout << " [X] ";
+                ss << " [X] ";
             } else {
-                std::cout << " [ ] ";
+                ss << " [ ] ";
             }
         }
-        std::cout << std::endl;
+        ss << std::endl;
     }
+    
+    return ss.str();
 }

@@ -3,7 +3,7 @@
 GPP = g++
 
 
-FLAGS = -std=c++11
+FLAGS = -std=c++11 `pkg-config --libs --cflags ncurses`
 
 # Final binary
 BIN = minefield

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <sstream>
+#include <ncurses.h>
 #include "Field.h"
 
 class Game {

@@ -20,26 +20,28 @@ bool Game::userHasWon() {
 void Game::askForInput() {
     char flag;
     int row, column;
-    std::string input = "";
-
+    
     //FLAG or REVEAL
     {
-        std::cout << "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL) ";
-        std::getline(std::cin, input);
-        flag = input[0];
+        char input;
+        mvprintw(LINES - 3, 0,"Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): ");
+        input = getch();
+        flag = input;
     }
 
     //ROW
     {
-        std::cout << "Insert row (1 - " << this->field->getHeight() << "): ";
-        std::getline(std::cin, input);
+        char input[4];
+        mvprintw(LINES - 2, 0, "Insert row (1 - %d): ", this->field->getHeight());
+        getnstr(input, 3);
         std::stringstream ss(input);
         ss >> row;
     }
     //COLUMN
     {
-        std::cout << "Insert column(1 - " << this->field->getWidth() << "): ";
-        std::getline(std::cin, input);
+        char input[4];
+        mvprintw(LINES - 1, 0, "Insert column(1 - %d): ", this->field->getWidth());
+        getnstr(input, 3);
         std::stringstream ss(input);
         ss >> column;
     }
@@ -51,5 +53,8 @@ void Game::checkVictory() {
 }
 
 void Game::printField(){
-    this->field->printField();
+    refresh();
+    clear();
+    mvprintw(0, 0, this->field->printField().c_str());
+    
 }
