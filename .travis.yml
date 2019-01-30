@@ -2,3 +2,5 @@ language: cpp
 compiler: gcc
 build_command: "make"
 script: "make"
+before_install:
+  - sudo apt-get install -y libncurses5-dev
