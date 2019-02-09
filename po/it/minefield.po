@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 15:18+0100\n"
-"PO-Revision-Date: 2019-02-09 15:19+0100\n"
+"POT-Creation-Date: 2019-02-09 17:58+0100\n"
+"PO-Revision-Date: 2019-02-09 18:00+0100\n"
 "Last-Translator: Luca Errani <luca.errani1@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -18,48 +18,82 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: src/Game.cpp:27
+#: src/Utils.hpp:14
+msgid "--help, -h        Shows usage and exits"
+msgstr "--help, -h        Mostra l'utilizzo ed esce"
+
+#: src/Utils.hpp:16
+msgid ""
+"--input, -i       [DEFAULT] Play Minefield by writing each time the ROW,"
+"COLUMN coordinate of the cell"
+msgstr ""
+"--input, -i       [DEFAULT] Gioca a Minefield inserendo di volta in volta le "
+"coordinate RIGA,COLONNA della cella"
+
+#: src/Utils.hpp:15
+msgid ""
+"--keys, -k        Play Minefield moving around the field with your arrow keys"
+msgstr ""
+"--keys, -k        Gioca a Minefield muovendoti con le frecce direzionali"
+
+#: src/Game.cpp:67
 msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
 msgstr "Vuoi FLAGGARE (f) o RIVELARE (r) una cella? (default = RIVELARE): "
 
-#: src/main.cpp:51
+#: src/main.cpp:68
 msgid "Feel free to contribute at https://github.com/luco5826/minefield"
 msgstr "Sentiti libero di contribuire su https://github.com/luco5826/minefield"
 
-#: src/Utils.cpp:17
+#: src/Utils.hpp:37
 msgid "Height: "
 msgstr "Altezza: "
 
-#: src/Game.cpp:43
+#: src/Game.cpp:83
 #, c-format
 msgid "Insert column(1 - %d): "
 msgstr "Inserisci la colonna(1 - %d): "
 
-#: src/Game.cpp:35
+#: src/Game.cpp:75
 #, c-format
 msgid "Insert row (1 - %d): "
 msgstr "Inserisci la riga (1 - %d): "
 
-#: src/main.cpp:46
+#: src/main.cpp:63
 msgid "MINE PRESSED::GAME FINISHED"
 msgstr "HAI PESTATO UNA MINA::GIOCO TERMINATO"
 
-#: src/main.cpp:15
+#: src/main.cpp:32
 msgid "MINEFIELD"
 msgstr "MINEFIELD"
 
-#: src/Utils.cpp:24
+#: src/Utils.hpp:44
 msgid "Mines number: "
 msgstr "Numero mine: "
 
-#: src/Utils.cpp:8
+#: src/Utils.hpp:13
+msgid "OPTIONS"
+msgstr "OPZIONI"
+
+#: src/Utils.hpp:22
+msgid "See ./minefield --help for further informations"
+msgstr "Vedi ./minefield --help per ulteriori informazioni"
+
+#: src/Utils.hpp:21
+msgid "Unknown options"
+msgstr "Opzioni sconosciute"
+
+#: src/Utils.hpp:11
+msgid "Usage: ./minefield [options]"
+msgstr "Utilizzo: ./minefield [opzioni]"
+
+#: src/Utils.hpp:28
 msgid "Width: "
 msgstr "Larghezza: "
 
-#: src/main.cpp:42
+#: src/main.cpp:59
 msgid "YOU WON!!!::GAME FINISHED"
 msgstr "HAI VINTO!!!::GIOCO TERMINATO"
 
-#: src/main.cpp:50
+#: src/main.cpp:67
 msgid "You played MINEFIELD - by Luca Errani"
-msgstr "Hai giocato a MINEDIELD - di Luca Errani"
+msgstr "Hai giocato a MINEFIELD - di Luca Errani"

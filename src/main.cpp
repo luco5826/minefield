@@ -1,22 +1,39 @@
 #include <ncurses.h>
+#include <string.h>
 #include <iostream>
 #include <memory>
 
-#include "Gettext.h"
 #include "Game.h"
-#include "Utils.h"
+#include "Gettext.h"
+#include "Utils.hpp"
 
-int main() {
+int main(int argv, char* argc[]) {
     setlocale(LC_ALL, "");
     bindtextdomain("minefield", "./locale");
     textdomain("minefield");
 
+    bool arrowKeys = false;
+
+    if (argv == 2 && (strcmp(argc[1], "--help") == 0 || strcmp(argc[1], "-h") == 0)){
+        Utils::printHelp();
+        return 0;
+    }
+
+    if (argv == 2 && (strcmp(argc[1], "--keys") == 0 || strcmp(argc[1], "-k") == 0)){
+        arrowKeys = true;
+    }
+
+    if (argv > 2){
+        Utils::printError();
+        return 0;
+    }
+
     int width = 0, height = 0, mines = 0;
     std::cout << _("MINEFIELD") << std::endl;
 
-    readFromTerminal(&width, &height, &mines);
+    Utils::readFromTerminal(&width, &height, &mines);
 
-    std::shared_ptr<Game> game = std::make_shared<Game>(width, height, mines);
+    std::shared_ptr<Game> game = std::make_shared<Game>(width, height, mines, arrowKeys);
 
     {  // Don't know what this block does, initialize ncurses
         initscr();
@@ -29,7 +46,7 @@ int main() {
 
     while (!game->userHasWon() && !game->mineIsPressed()) {
         game->printField();
-        game->askForInput();
+        game->userInput();
         game->checkVictory();
     }
 

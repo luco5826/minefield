@@ -1,19 +1,24 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <sstream>
 #include <ncurses.h>
-#include "Gettext.h"
+#include <sstream>
 #include "Field.h"
+#include "Gettext.h"
 
 class Game {
    private:
     Field *field;
+    bool arrowKeys = false;
     bool minePressed = false;
     bool won = false;
 
+    struct  {
+        int x, y;
+    } cursorPos;
+
    public:
-    Game(const int width, const int height, const int mines);
+    Game(const int width, const int height, const int mines, const bool arrowKeys);
 
     ~Game();
 
@@ -28,10 +33,19 @@ class Game {
     bool userHasWon();
 
     /**
-     * Ask if the user wants to reveal or flag a Cell, and the
-     * row-column coordinates of that Cell
+     * Starts the user Input question
      */
-    void askForInput();
+    void userInput();
+
+    /**
+     * Handles the arrow keys and the Cell's selection with ncurses
+     */
+    void userInputKeys();
+
+    /**
+     * Asks Row, Column coordinates for user's selection
+     */
+    void userInputCLI();
 
     /**
      * Check if the user has won the game

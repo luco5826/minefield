@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 15:18+0100\n"
+"POT-Creation-Date: 2019-02-09 17:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,79 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Game.cpp:27
+#: src/Utils.hpp:14
+msgid "--help, -h        Shows usage and exits"
+msgstr ""
+
+#: src/Utils.hpp:16
+msgid ""
+"--input, -i       [DEFAULT] Play Minefield by writing each time the ROW,"
+"COLUMN coordinate of the cell"
+msgstr ""
+
+#: src/Utils.hpp:15
+msgid ""
+"--keys, -k        Play Minefield moving around the field with your arrow keys"
+msgstr ""
+
+#: src/Game.cpp:67
 msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
 msgstr ""
 
-#: src/main.cpp:51
+#: src/main.cpp:68
 msgid "Feel free to contribute at https://github.com/luco5826/minefield"
 msgstr ""
 
-#: src/Utils.cpp:17
+#: src/Utils.hpp:37
 msgid "Height: "
 msgstr ""
 
-#: src/Game.cpp:43
+#: src/Game.cpp:83
 #, c-format
 msgid "Insert column(1 - %d): "
 msgstr ""
 
-#: src/Game.cpp:35
+#: src/Game.cpp:75
 #, c-format
 msgid "Insert row (1 - %d): "
 msgstr ""
 
-#: src/main.cpp:46
+#: src/main.cpp:63
 msgid "MINE PRESSED::GAME FINISHED"
 msgstr ""
 
-#: src/main.cpp:15
+#: src/main.cpp:32
 msgid "MINEFIELD"
 msgstr ""
 
-#: src/Utils.cpp:24
+#: src/Utils.hpp:44
 msgid "Mines number: "
 msgstr ""
 
-#: src/Utils.cpp:8
+#: src/Utils.hpp:13
+msgid "OPTIONS"
+msgstr ""
+
+#: src/Utils.hpp:22
+msgid "See ./minefield --help for further informations"
+msgstr ""
+
+#: src/Utils.hpp:21
+msgid "Unknown options"
+msgstr ""
+
+#: src/Utils.hpp:11
+msgid "Usage: ./minefield [options]"
+msgstr ""
+
+#: src/Utils.hpp:28
 msgid "Width: "
 msgstr ""
 
-#: src/main.cpp:42
+#: src/main.cpp:59
 msgid "YOU WON!!!::GAME FINISHED"
 msgstr ""
 
-#: src/main.cpp:50
+#: src/main.cpp:67
 msgid "You played MINEFIELD - by Luca Errani"
 msgstr ""

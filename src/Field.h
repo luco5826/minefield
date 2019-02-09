@@ -96,7 +96,12 @@ class Field {
     int getWidth();
 
     /**
-     * Returns the field
+     * Returns the field with the cursor inside
+     */
+    std::string printField(int cursorRow, int cursorCol);
+
+    /**
+     * Returns the field without the cursor
      */
     std::string printField();
 };
