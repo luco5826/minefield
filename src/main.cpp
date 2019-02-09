@@ -1,18 +1,39 @@
 #include <ncurses.h>
+#include <string.h>
 #include <iostream>
 #include <memory>
-#include "Cell.h"
-#include "Field.h"
+
 #include "Game.h"
-#include "Utils.h"
+#include "Gettext.h"
+#include "Utils.hpp"
 
-int main() {
+int main(int argv, char* argc[]) {
+    setlocale(LC_ALL, "");
+    bindtextdomain("minefield", "./locale");
+    textdomain("minefield");
+
+    bool arrowKeys = false;
+
+    if (argv == 2 && (strcmp(argc[1], "--help") == 0 || strcmp(argc[1], "-h") == 0)){
+        Utils::printHelp();
+        return 0;
+    }
+
+    if (argv == 2 && (strcmp(argc[1], "--keys") == 0 || strcmp(argc[1], "-k") == 0)){
+        arrowKeys = true;
+    }
+
+    if (argv > 2){
+        Utils::printError();
+        return 0;
+    }
+
     int width = 0, height = 0, mines = 0;
-    std::cout << "MINEFIELD" << std::endl;
+    std::cout << _("MINEFIELD") << std::endl;
 
-    readFromTerminal(&width, &height, &mines);
+    Utils::readFromTerminal(&width, &height, &mines);
 
-    std::shared_ptr<Game> game = std::make_shared<Game>(width, height, mines);
+    std::shared_ptr<Game> game = std::make_shared<Game>(width, height, mines, arrowKeys);
 
     {  // Don't know what this block does, initialize ncurses
         initscr();
@@ -25,7 +46,7 @@ int main() {
 
     while (!game->userHasWon() && !game->mineIsPressed()) {
         game->printField();
-        game->askForInput();
+        game->userInput();
         game->checkVictory();
     }
 
@@ -35,16 +56,16 @@ int main() {
 
     if (game->userHasWon()) {
         std::cout << std::endl;
-        std::cout << "YOU WON!!!::GAME FINISHED" << std::endl;
+        std::cout << _("YOU WON!!!::GAME FINISHED") << std::endl;
         std::cout << std::endl;
     } else {
         std::cout << std::endl;
-        std::cout << "MINE PRESSED::GAME FINISHED" << std::endl;
+        std::cout << _("MINE PRESSED::GAME FINISHED") << std::endl;
         std::cout << std::endl;
     }
     
-    std::cout << "You played MINEFIELD - by Luca Errani" << std::endl;
-    std::cout << "Feel free to contribute at https://github.com/luco5826/minefield" << std::endl;
+    std::cout << _("You played MINEFIELD - by Luca Errani") << std::endl;
+    std::cout << _("Feel free to contribute at https://github.com/luco5826/minefield") << std::endl;
 
     return 0;
 }

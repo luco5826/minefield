@@ -172,7 +172,7 @@ int Field::getHeight() {
     return this->height;
 }
 
-std::string Field::printField() {
+std::string Field::printField(int cursorRow, int cursorCol) {
     std::stringstream ss;
     ss << "     ";
     for (size_t colIndex = 1; colIndex <= this->width; colIndex++) {
@@ -182,7 +182,8 @@ std::string Field::printField() {
             ss << " " << colIndex << "  ";
         }
     }
-    ss << std::endl << std::endl;
+    ss << std::endl
+       << std::endl;
     for (size_t i = 0; i < this->height; i++) {
         if (i < 9) {
             ss << "  " << i + 1 << "  ";
@@ -191,6 +192,10 @@ std::string Field::printField() {
         }
 
         for (size_t j = 0; j < this->width; j++) {
+            if (i == cursorRow && j == cursorCol) {
+                ss << " [O] ";
+                continue;
+            }
             Cell current = *getCell(i, j);
             if (current.isVisible()) {
                 if (current.getNearMines() == 0) {
@@ -206,6 +211,10 @@ std::string Field::printField() {
         }
         ss << std::endl;
     }
-    
+
     return ss.str();
+}
+
+std::string Field::printField() {
+    return this->printField(-1, -1);
 }
