@@ -3,6 +3,7 @@
 
 #include <sstream>
 #include <ncurses.h>
+#include "Gettext.h"
 #include "Field.h"
 
 class Game {

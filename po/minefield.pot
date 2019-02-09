@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-09 15:18+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Game.cpp:27
+msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
+msgstr ""
+
+#: src/main.cpp:51
+msgid "Feel free to contribute at https://github.com/luco5826/minefield"
+msgstr ""
+
+#: src/Utils.cpp:17
+msgid "Height: "
+msgstr ""
+
+#: src/Game.cpp:43
+#, c-format
+msgid "Insert column(1 - %d): "
+msgstr ""
+
+#: src/Game.cpp:35
+#, c-format
+msgid "Insert row (1 - %d): "
+msgstr ""
+
+#: src/main.cpp:46
+msgid "MINE PRESSED::GAME FINISHED"
+msgstr ""
+
+#: src/main.cpp:15
+msgid "MINEFIELD"
+msgstr ""
+
+#: src/Utils.cpp:24
+msgid "Mines number: "
+msgstr ""
+
+#: src/Utils.cpp:8
+msgid "Width: "
+msgstr ""
+
+#: src/main.cpp:42
+msgid "YOU WON!!!::GAME FINISHED"
+msgstr ""
+
+#: src/main.cpp:50
+msgid "You played MINEFIELD - by Luca Errani"
+msgstr ""

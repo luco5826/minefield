@@ -3,7 +3,6 @@
 
 Game::Game(const int width, const int height, const int mines) {
     this->field = new Field(width, height, mines);
-    std::cout << "Field created" << std::endl;
 }
 
 Game::~Game() {
@@ -24,7 +23,7 @@ void Game::askForInput() {
     //FLAG or REVEAL
     {
         char input;
-        mvprintw(LINES - 3, 0,"Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): ");
+        mvprintw(LINES - 3, 0, _("Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "));
         input = getch();
         flag = input;
     }
@@ -32,7 +31,7 @@ void Game::askForInput() {
     //ROW
     {
         char input[4];
-        mvprintw(LINES - 2, 0, "Insert row (1 - %d): ", this->field->getHeight());
+        mvprintw(LINES - 2, 0, _("Insert row (1 - %d): "), this->field->getHeight());
         getnstr(input, 3);
         std::stringstream ss(input);
         ss >> row;
@@ -40,7 +39,7 @@ void Game::askForInput() {
     //COLUMN
     {
         char input[4];
-        mvprintw(LINES - 1, 0, "Insert column(1 - %d): ", this->field->getWidth());
+        mvprintw(LINES - 1, 0, _("Insert column(1 - %d): "), this->field->getWidth());
         getnstr(input, 3);
         std::stringstream ss(input);
         ss >> column;

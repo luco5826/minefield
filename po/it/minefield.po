@@ -1,0 +1,65 @@
+# Italian translations for PACKAGE package.
+# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Luca Errani <luca.errani1@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-09 15:18+0100\n"
+"PO-Revision-Date: 2019-02-09 15:19+0100\n"
+"Last-Translator: Luca Errani <luca.errani1@gmail.com>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: src/Game.cpp:27
+msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
+msgstr "Vuoi FLAGGARE (f) o RIVELARE (r) una cella? (default = RIVELARE): "
+
+#: src/main.cpp:51
+msgid "Feel free to contribute at https://github.com/luco5826/minefield"
+msgstr "Sentiti libero di contribuire su https://github.com/luco5826/minefield"
+
+#: src/Utils.cpp:17
+msgid "Height: "
+msgstr "Altezza: "
+
+#: src/Game.cpp:43
+#, c-format
+msgid "Insert column(1 - %d): "
+msgstr "Inserisci la colonna(1 - %d): "
+
+#: src/Game.cpp:35
+#, c-format
+msgid "Insert row (1 - %d): "
+msgstr "Inserisci la riga (1 - %d): "
+
+#: src/main.cpp:46
+msgid "MINE PRESSED::GAME FINISHED"
+msgstr "HAI PESTATO UNA MINA::GIOCO TERMINATO"
+
+#: src/main.cpp:15
+msgid "MINEFIELD"
+msgstr "MINEFIELD"
+
+#: src/Utils.cpp:24
+msgid "Mines number: "
+msgstr "Numero mine: "
+
+#: src/Utils.cpp:8
+msgid "Width: "
+msgstr "Larghezza: "
+
+#: src/main.cpp:42
+msgid "YOU WON!!!::GAME FINISHED"
+msgstr "HAI VINTO!!!::GIOCO TERMINATO"
+
+#: src/main.cpp:50
+msgid "You played MINEFIELD - by Luca Errani"
+msgstr "Hai giocato a MINEDIELD - di Luca Errani"
