@@ -38,7 +38,7 @@ void Game::userInputKeys() {
             this->field->selectCell(cursorPos.x, cursorPos.y, Field::SelectOption::FLAG);
             break;
         case 10:  // Enter key
-            this->field->selectCell(cursorPos.x, cursorPos.y, Field::SelectOption::REVEAL);
+            this->minePressed = this->field->selectCell(cursorPos.x, cursorPos.y, Field::SelectOption::REVEAL);
             break;
         case KEY_LEFT:
             cursorPos.y = MAX(0, cursorPos.y - 1);
