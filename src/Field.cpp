@@ -7,10 +7,11 @@
  *  
  */
 
-Field::Field(const int width = 10, const int height = 10, const int mines = 20) {
-    this->width = width;
-    this->height = height;
-    this->mines = mines;
+Field::Field(const int width = 10, const int height = 10, const int mines = 20) : width(width), height(height), mines(mines) {
+
+    if(width <= 0 || height <= 0 || mines <= 0){
+        throw std::exception();
+    }
 
     //Building the field (matrix[height][width])
     this->field = new Cell *[height];
@@ -120,18 +121,24 @@ bool Field::revealSurroundingGrid(const int i, const int j) {
 }
 
 bool Field::selectCell(const int row, const int column, Field::SelectOption option) {
+    // Returns a nullptr if the coordinates are out of range
     Cell *selected = this->getCell(row, column);
 
     if (selected == nullptr)
         return false;
 
     if (option == Field::SelectOption::REVEAL) {  //Reveal selected Cell
-        if (selected->isMined())
+        if (selected->isMined()) {
             return true;
+        }
         selected->setVisible(true);
         this->updateCells();
-    } else if (option == Field::SelectOption::FLAG) {  //Just flag selected cell
-        selected->setFlag(true);
+    } else if (option == Field::SelectOption::FLAG) {  //Just flag/unflag selected cell
+        if (selected->isFlagged()) {
+            selected->setFlag(false);
+        } else {
+            selected->setFlag(true);
+        }
     }
     return false;
 }

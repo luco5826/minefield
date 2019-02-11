@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iostream>
 #include <sstream>
+#include <exception>
 #include "Cell.h"
 
 /**
