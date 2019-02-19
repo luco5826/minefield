@@ -8,11 +8,7 @@
  */
 
 Field::Field(const int width = 10, const int height = 10, const int mines = 20) : width(width), height(height), mines(mines) {
-
-    if(width <= 0 || height <= 0 || mines <= 0){
-        throw std::exception();
-    }
-
+    
     //Building the field (matrix[height][width])
     this->field = new Cell *[height];
     for (size_t i = 0; i < this->height; i++) {

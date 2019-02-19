@@ -3,3 +3,5 @@ build
 
 # Executable
 minefield
+
+po/it/minefield.mo
