@@ -86,6 +86,14 @@ class Field {
     Cell *getCell(const int y, const int x);
 
     /**
+     * In order to optimize ncurses prints, we update only the Cells where
+     * the cursor passes, so this method is needed in order to re-draw 
+     * the previous cell's status when the cursor leaves it.
+     * Used in Game->printField();
+     */
+    const char* cellStatus(const int y, const int x);
+
+    /**
      * Returns the height of the table
      */
     int getHeight();
