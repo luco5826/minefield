@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 #include <sstream>
-#include <exception>
+#include <stdexcept>
 #include "Field.h"
 #include "Gettext.h"
 
