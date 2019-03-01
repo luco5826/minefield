@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 17:58+0100\n"
+"POT-Creation-Date: 2019-02-17 20:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,11 +32,11 @@ msgid ""
 "--keys, -k        Play Minefield moving around the field with your arrow keys"
 msgstr ""
 
-#: src/Game.cpp:67
+#: src/Game.cpp:78
 msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
 msgstr ""
 
-#: src/main.cpp:68
+#: src/main.cpp:76
 msgid "Feel free to contribute at https://github.com/luco5826/minefield"
 msgstr ""
 
@@ -44,17 +44,17 @@ msgstr ""
 msgid "Height: "
 msgstr ""
 
-#: src/Game.cpp:83
+#: src/Game.cpp:94
 #, c-format
 msgid "Insert column(1 - %d): "
 msgstr ""
 
-#: src/Game.cpp:75
+#: src/Game.cpp:86
 #, c-format
 msgid "Insert row (1 - %d): "
 msgstr ""
 
-#: src/main.cpp:63
+#: src/main.cpp:71
 msgid "MINE PRESSED::GAME FINISHED"
 msgstr ""
 
@@ -74,6 +74,10 @@ msgstr ""
 msgid "See ./minefield --help for further informations"
 msgstr ""
 
+#: src/Game.cpp:13
+msgid "There aren't enough cells for the specified mines number!"
+msgstr ""
+
 #: src/Utils.hpp:21
 msgid "Unknown options"
 msgstr ""
@@ -82,14 +86,18 @@ msgstr ""
 msgid "Usage: ./minefield [options]"
 msgstr ""
 
+#: src/Game.cpp:8
+msgid "Width or height or mines number cannot be negative or zero!"
+msgstr ""
+
 #: src/Utils.hpp:28
 msgid "Width: "
 msgstr ""
 
-#: src/main.cpp:59
+#: src/main.cpp:67
 msgid "YOU WON!!!::GAME FINISHED"
 msgstr ""
 
-#: src/main.cpp:67
+#: src/main.cpp:75
 msgid "You played MINEFIELD - by Luca Errani"
 msgstr ""

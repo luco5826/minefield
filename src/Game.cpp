@@ -3,7 +3,18 @@
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 Game::Game(const int width, const int height, const int mines, const bool arrowKeys) : arrowKeys(arrowKeys) {
+    // Negative values check
+    if (width <= 0 || height <= 0 || mines <= 0) {
+        throw std::invalid_argument(_("Width or height or mines number cannot be negative or zero!"));
+    }
+
+    // Check if there are enough cells for mines
+    if (mines > width * height) {
+        throw std::invalid_argument(_("There aren't enough cells for the specified mines number!"));
+    }
+
     this->field = new Field(width, height, mines);
+
     if (arrowKeys) {
         cursorPos.x = 0;
         cursorPos.y = 0;
@@ -41,7 +52,7 @@ void Game::userInputKeys() {
         case 'F':
             this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::FLAG);
             break;
-        case 10:  // Enter key
+        case 10:  // Enter key           
             this->minePressed = this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::REVEAL);
             break;
         case KEY_LEFT:

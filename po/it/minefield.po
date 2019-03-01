@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 17:58+0100\n"
-"PO-Revision-Date: 2019-02-09 18:00+0100\n"
+"POT-Creation-Date: 2019-02-17 20:16+0100\n"
+"PO-Revision-Date: 2019-02-17 20:17+0100\n"
 "Last-Translator: Luca Errani <luca.errani1@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -36,11 +36,11 @@ msgid ""
 msgstr ""
 "--keys, -k        Gioca a Minefield muovendoti con le frecce direzionali"
 
-#: src/Game.cpp:67
+#: src/Game.cpp:78
 msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
 msgstr "Vuoi FLAGGARE (f) o RIVELARE (r) una cella? (default = RIVELARE): "
 
-#: src/main.cpp:68
+#: src/main.cpp:76
 msgid "Feel free to contribute at https://github.com/luco5826/minefield"
 msgstr "Sentiti libero di contribuire su https://github.com/luco5826/minefield"
 
@@ -48,17 +48,17 @@ msgstr "Sentiti libero di contribuire su https://github.com/luco5826/minefield"
 msgid "Height: "
 msgstr "Altezza: "
 
-#: src/Game.cpp:83
+#: src/Game.cpp:94
 #, c-format
 msgid "Insert column(1 - %d): "
 msgstr "Inserisci la colonna(1 - %d): "
 
-#: src/Game.cpp:75
+#: src/Game.cpp:86
 #, c-format
 msgid "Insert row (1 - %d): "
 msgstr "Inserisci la riga (1 - %d): "
 
-#: src/main.cpp:63
+#: src/main.cpp:71
 msgid "MINE PRESSED::GAME FINISHED"
 msgstr "HAI PESTATO UNA MINA::GIOCO TERMINATO"
 
@@ -78,6 +78,10 @@ msgstr "OPZIONI"
 msgid "See ./minefield --help for further informations"
 msgstr "Vedi ./minefield --help per ulteriori informazioni"
 
+#: src/Game.cpp:13
+msgid "There aren't enough cells for the specified mines number!"
+msgstr "Non ci sono abbastanza celle per il numero di mine specificato!"
+
 #: src/Utils.hpp:21
 msgid "Unknown options"
 msgstr "Opzioni sconosciute"
@@ -86,14 +90,20 @@ msgstr "Opzioni sconosciute"
 msgid "Usage: ./minefield [options]"
 msgstr "Utilizzo: ./minefield [opzioni]"
 
+#: src/Game.cpp:8
+msgid "Width or height or mines number cannot be negative or zero!"
+msgstr ""
+"La larghezza, l'altezza e il numero dell mine non possono essere negativi o "
+"zero!"
+
 #: src/Utils.hpp:28
 msgid "Width: "
 msgstr "Larghezza: "
 
-#: src/main.cpp:59
+#: src/main.cpp:67
 msgid "YOU WON!!!::GAME FINISHED"
 msgstr "HAI VINTO!!!::GIOCO TERMINATO"
 
-#: src/main.cpp:67
+#: src/main.cpp:75
 msgid "You played MINEFIELD - by Luca Errani"
 msgstr "Hai giocato a MINEFIELD - di Luca Errani"
