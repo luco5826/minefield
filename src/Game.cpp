@@ -18,6 +18,8 @@ Game::Game(const int width, const int height, const int mines, const bool arrowK
     if (arrowKeys) {
         cursorPos.x = 0;
         cursorPos.y = 0;
+        cursorPos.prevX = 0;
+        cursorPos.prevY = 0;
     }
 }
 
@@ -41,27 +43,37 @@ void Game::userInput() {
 }
 
 void Game::userInputKeys() {
+    cursorPos.prevX = cursorPos.x;
+    cursorPos.prevY = cursorPos.y;
     int ch = getch();
 
     switch (ch) {
         case 'f':
         case 'F':
-            this->field->selectCell(cursorPos.x, cursorPos.y, Field::SelectOption::FLAG);
+            this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::FLAG);
             break;
-        case 10:  // Enter key
-            this->minePressed = this->field->selectCell(cursorPos.x, cursorPos.y, Field::SelectOption::REVEAL);
+        case 10:  // Enter key           
+            this->minePressed = this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::REVEAL);
             break;
         case KEY_LEFT:
-            cursorPos.y = MAX(0, cursorPos.y - 1);
+
+            cursorPos.x = MAX(0, cursorPos.x - 1);
+            onlyCursorMove = true;
             break;
         case KEY_RIGHT:
-            cursorPos.y = MIN(this->field->getWidth() - 1, cursorPos.y + 1);
+
+            cursorPos.x = MIN(this->field->getWidth() - 1, cursorPos.x + 1);
+            onlyCursorMove = true;
             break;
         case KEY_UP:
-            cursorPos.x = MAX(0, cursorPos.x - 1);
+
+            cursorPos.y = MAX(0, cursorPos.y - 1);
+            onlyCursorMove = true;
             break;
         case KEY_DOWN:
-            cursorPos.x = MIN(this->field->getHeight() - 1, cursorPos.x + 1);
+
+            cursorPos.y = MIN(this->field->getHeight() - 1, cursorPos.y + 1);
+            onlyCursorMove = true;
             break;
         default:
             break;
@@ -104,10 +116,19 @@ void Game::checkVictory() {
 }
 
 void Game::printField() {
-    clear();
     if (this->arrowKeys) {
-        mvprintw(0, 0, this->field->printField(cursorPos.x, cursorPos.y).c_str());
+        // If only the Cursor's position needs to be updated, we restore the cell where the cursor
+        // was (field->cellStatus()), and re-draw it in the new one
+        if (onlyCursorMove) {
+            mvprintw(cursorPos.prevY + 2, cursorPos.prevX * 5 + 6, this->field->cellStatus(cursorPos.prevY, cursorPos.prevX));
+            mvprintw(cursorPos.y + 2, cursorPos.x * 5 + 6, "[O]");
+        } else {
+            clear();
+            mvprintw(0, 0, this->field->printField(cursorPos.y, cursorPos.x).c_str());
+        }
+        onlyCursorMove = false;
     } else {
+        clear();
         mvprintw(0, 0, this->field->printField().c_str());
     }
 }

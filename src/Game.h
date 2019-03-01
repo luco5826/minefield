@@ -13,9 +13,11 @@ class Game {
     bool arrowKeys = false;
     bool minePressed = false;
     bool won = false;
+    bool onlyCursorMove = false;
 
     struct  {
         int x, y;
+        int prevX, prevY;
     } cursorPos;
 
    public:

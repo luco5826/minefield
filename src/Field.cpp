@@ -167,6 +167,21 @@ Cell *Field::getCell(const int y, const int x) {
     return &this->field[y][x];
 }
 
+const char *Field::cellStatus(const int y, const int x) {
+    Cell *cell = getCell(y, x);
+    if (cell->isFlagged()) {
+        return "[X]";
+    } else if (cell->isVisible()) {
+        if (cell->getNearMines() > 0) {
+            return (" " + std::to_string(cell->getNearMines()) + " ").c_str();
+        } else {
+            return "   ";
+        }
+    } else {
+        return "[ ]";
+    }
+}
+
 int Field::getWidth() {
     return this->width;
 }
@@ -177,6 +192,8 @@ int Field::getHeight() {
 
 std::string Field::printField(int cursorRow, int cursorCol) {
     std::stringstream ss;
+
+    // Offset for table row-column's numbers
     ss << "     ";
     for (size_t colIndex = 1; colIndex <= this->width; colIndex++) {
         if (colIndex < 10) {
@@ -188,6 +205,7 @@ std::string Field::printField(int cursorRow, int cursorCol) {
     ss << std::endl
        << std::endl;
     for (size_t i = 0; i < this->height; i++) {
+        // Offset, 2 spaces for 1 digit numbers, 1 for 2 digits
         if (i < 9) {
             ss << "  " << i + 1 << "  ";
         } else {
@@ -195,11 +213,19 @@ std::string Field::printField(int cursorRow, int cursorCol) {
         }
 
         for (size_t j = 0; j < this->width; j++) {
+            Cell current = *getCell(i, j);
+            // If ENTER has been pressed, we show under the cursor the current
+            // cell value
             if (i == cursorRow && j == cursorCol) {
-                ss << " [O] ";
+                if (current.isFlagged()) {
+                    ss << " [X] ";
+                } else {
+                    ss << " [" << current.getNearMines() << "] ";
+                }
                 continue;
             }
-            Cell current = *getCell(i, j);
+
+            // We print blank spaces on 0-near-mines cells
             if (current.isVisible()) {
                 if (current.getNearMines() == 0) {
                     ss << "     ";
