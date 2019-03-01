@@ -11,6 +11,7 @@ class Game {
    private:
     Field *field;
     bool arrowKeys = false;
+    bool mousePointer = false;
     bool minePressed = false;
     bool won = false;
     bool onlyCursorMove = false;
@@ -21,7 +22,7 @@ class Game {
     } cursorPos;
 
    public:
-    Game(const int width, const int height, const int mines, const bool arrowKeys);
+    Game(const int width, const int height, const int mines, const bool arrowKeys, const bool mousePointer);
 
     ~Game();
 
@@ -44,6 +45,11 @@ class Game {
      * Handles the arrow keys and the Cell's selection with ncurses
      */
     void userInputKeys();
+
+    /**
+     * Handle the mouse click on cells with ncurses
+     */
+    void userInputMouse();
 
     /**
      * Asks Row, Column coordinates for user's selection

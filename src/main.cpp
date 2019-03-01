@@ -13,6 +13,7 @@ int main(int argv, char* argc[]) {
     textdomain("minefield");
 
     bool arrowKeys = false;
+    bool mousePointer = false;
 
     if (argv == 2 && (strcmp(argc[1], "--help") == 0 || strcmp(argc[1], "-h") == 0)) {
         Utils::printHelp();
@@ -21,6 +22,10 @@ int main(int argv, char* argc[]) {
 
     if (argv == 2 && (strcmp(argc[1], "--keys") == 0 || strcmp(argc[1], "-k") == 0)) {
         arrowKeys = true;
+    }
+
+    if (argv == 2 && (strcmp(argc[1], "--mouse") == 0 || strcmp(argc[1], "-m") == 0)) {
+        mousePointer = true;
     }
 
     if (argv > 2) {
@@ -35,7 +40,7 @@ int main(int argv, char* argc[]) {
 
     std::shared_ptr<Game> game;
     try {
-        game = std::make_shared<Game>(width, height, mines, arrowKeys);
+        game = std::make_shared<Game>(width, height, mines, arrowKeys, mousePointer);
     } catch (std::invalid_argument& e) {
         std::cout << std::endl;
         std::cout << e.what() << std::endl;
@@ -46,8 +51,9 @@ int main(int argv, char* argc[]) {
     {  // Don't know what this block does, initialize ncurses
         initscr();
         cbreak();
-        curs_set(FALSE);
+        curs_set(FALSE);  // Hides the cursor
         keypad(stdscr, TRUE);
+        mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, nullptr);
         refresh();       // Refresh the screen
         attron(A_BOLD);  // Set font to BOLD
     }

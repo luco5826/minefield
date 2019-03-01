@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-17 20:16+0100\n"
-"PO-Revision-Date: 2019-02-17 20:17+0100\n"
+"POT-Creation-Date: 2019-03-01 21:15+0100\n"
+"PO-Revision-Date: 2019-03-01 21:19+0100\n"
 "Last-Translator: Luca Errani <luca.errani1@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -19,54 +19,62 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 
 #: src/Utils.hpp:14
-msgid "--help, -h        Shows usage and exits"
-msgstr "--help, -h        Mostra l'utilizzo ed esce"
+msgid "--help,  -h        Shows usage and exits"
+msgstr "--help,  -h        Mostra l'utilizzo ed esce"
 
-#: src/Utils.hpp:16
+#: src/Utils.hpp:17
 msgid ""
-"--input, -i       [DEFAULT] Play Minefield by writing each time the ROW,"
+"--input, -i        [DEFAULT] Play Minefield by writing each time the ROW,"
 "COLUMN coordinate of the cell"
 msgstr ""
-"--input, -i       [DEFAULT] Gioca a Minefield inserendo di volta in volta le "
-"coordinate RIGA,COLONNA della cella"
+"--input, -i        [DEFAULT] Gioca a Minefield inserendo di volta in volta "
+"le coordinate RIGA,COLONNA della cella"
 
 #: src/Utils.hpp:15
 msgid ""
-"--keys, -k        Play Minefield moving around the field with your arrow keys"
+"--keys,  -k        Play Minefield moving around the field with your arrow "
+"keys"
 msgstr ""
-"--keys, -k        Gioca a Minefield muovendoti con le frecce direzionali"
+"--keys,  -k        Gioca a Minefield muovendoti con le frecce direzionali"
 
-#: src/Game.cpp:78
+#: src/Utils.hpp:16
+msgid ""
+"--mouse, -m        Play Minefield clicking on the cells like a normal GUI"
+msgstr ""
+"--mouse, -m        Gioca a Minefield cliccando sulle celle come una GUI "
+"classica"
+
+#: src/Game.cpp:111
 msgid "Do you want to FLAG (f) or REVEAL (r) a cell? (default = REVEAL): "
 msgstr "Vuoi FLAGGARE (f) o RIVELARE (r) una cella? (default = RIVELARE): "
 
-#: src/main.cpp:76
+#: src/main.cpp:82
 msgid "Feel free to contribute at https://github.com/luco5826/minefield"
 msgstr "Sentiti libero di contribuire su https://github.com/luco5826/minefield"
 
-#: src/Utils.hpp:37
+#: src/Utils.hpp:38
 msgid "Height: "
 msgstr "Altezza: "
 
-#: src/Game.cpp:94
+#: src/Game.cpp:127
 #, c-format
 msgid "Insert column(1 - %d): "
 msgstr "Inserisci la colonna(1 - %d): "
 
-#: src/Game.cpp:86
+#: src/Game.cpp:119
 #, c-format
 msgid "Insert row (1 - %d): "
 msgstr "Inserisci la riga (1 - %d): "
 
-#: src/main.cpp:71
+#: src/main.cpp:77
 msgid "MINE PRESSED::GAME FINISHED"
 msgstr "HAI PESTATO UNA MINA::GIOCO TERMINATO"
 
-#: src/main.cpp:32
+#: src/main.cpp:37
 msgid "MINEFIELD"
 msgstr "MINEFIELD"
 
-#: src/Utils.hpp:44
+#: src/Utils.hpp:45
 msgid "Mines number: "
 msgstr "Numero mine: "
 
@@ -74,15 +82,15 @@ msgstr "Numero mine: "
 msgid "OPTIONS"
 msgstr "OPZIONI"
 
-#: src/Utils.hpp:22
+#: src/Utils.hpp:23
 msgid "See ./minefield --help for further informations"
 msgstr "Vedi ./minefield --help per ulteriori informazioni"
 
-#: src/Game.cpp:13
+#: src/Game.cpp:15
 msgid "There aren't enough cells for the specified mines number!"
 msgstr "Non ci sono abbastanza celle per il numero di mine specificato!"
 
-#: src/Utils.hpp:21
+#: src/Utils.hpp:22
 msgid "Unknown options"
 msgstr "Opzioni sconosciute"
 
@@ -90,20 +98,20 @@ msgstr "Opzioni sconosciute"
 msgid "Usage: ./minefield [options]"
 msgstr "Utilizzo: ./minefield [opzioni]"
 
-#: src/Game.cpp:8
+#: src/Game.cpp:10
 msgid "Width or height or mines number cannot be negative or zero!"
 msgstr ""
 "La larghezza, l'altezza e il numero dell mine non possono essere negativi o "
 "zero!"
 
-#: src/Utils.hpp:28
+#: src/Utils.hpp:29
 msgid "Width: "
 msgstr "Larghezza: "
 
-#: src/main.cpp:67
+#: src/main.cpp:73
 msgid "YOU WON!!!::GAME FINISHED"
 msgstr "HAI VINTO!!!::GIOCO TERMINATO"
 
-#: src/main.cpp:75
+#: src/main.cpp:81
 msgid "You played MINEFIELD - by Luca Errani"
 msgstr "Hai giocato a MINEFIELD - di Luca Errani"

@@ -8,10 +8,9 @@
  */
 
 Field::Field(const int width = 10, const int height = 10, const int mines = 20) : width(width), height(height), mines(mines) {
-    
     //Building the field (matrix[height][width])
     this->field = new Cell *[height];
-    for (size_t i = 0; i < this->height; i++) {
+    for (int i = 0; i < this->height; i++) {
         this->field[i] = new Cell[width];
     }
 
@@ -20,7 +19,7 @@ Field::Field(const int width = 10, const int height = 10, const int mines = 20) 
 }
 
 Field::~Field() {
-    for (size_t i = 0; i < this->height; i++) {
+    for (int i = 0; i < this->height; i++) {
         delete[] this->field[i];
     }
     delete[] this->field;
@@ -38,8 +37,11 @@ void Field::addMines() {
 
         //The order of (y, x) instead of (x, y) is due to a different rappresentation of the field,
         //we need to access row THEN column, so it is Y-position THEN X-position
-        if (!getCell(positionY, positionX)->isMined()) {
-            getCell(positionY, positionX)->setMine();
+        Cell *current = getCell(positionY, positionX);
+        if (current->isMined()) {
+            continue;
+        } else {
+            current->setMine();
             minesPlaced++;
         }
     }
@@ -48,11 +50,11 @@ void Field::addMines() {
 void Field::setupCells() {
     //Searches through the field, when it finds a MINED cell, increment by one
     //the value "nearMines" of near cells (in the 3x3 surrounding grid)
-    for (size_t i = 0; i < this->height; i++) {
-        for (size_t j = 0; j < this->width; j++) {
+    for (int i = 0; i < this->height; i++) {
+        for (int j = 0; j < this->width; j++) {
             //Extraction (readability)
-            Cell current = *getCell(i, j);
-            if (current.isMined()) {
+            Cell *current = getCell(i, j);
+            if (current->isMined()) {
                 this->incrementSurroundingGrid(i, j);
             }
         }
@@ -195,7 +197,7 @@ std::string Field::printField(int cursorRow, int cursorCol) {
 
     // Offset for table row-column's numbers
     ss << "     ";
-    for (size_t colIndex = 1; colIndex <= this->width; colIndex++) {
+    for (int colIndex = 1; colIndex <= this->width; colIndex++) {
         if (colIndex < 10) {
             ss << "  " << colIndex << "  ";
         } else {
@@ -204,7 +206,7 @@ std::string Field::printField(int cursorRow, int cursorCol) {
     }
     ss << std::endl
        << std::endl;
-    for (size_t i = 0; i < this->height; i++) {
+    for (int i = 0; i < this->height; i++) {
         // Offset, 2 spaces for 1 digit numbers, 1 for 2 digits
         if (i < 9) {
             ss << "  " << i + 1 << "  ";
@@ -212,7 +214,7 @@ std::string Field::printField(int cursorRow, int cursorCol) {
             ss << " " << i + 1 << "  ";
         }
 
-        for (size_t j = 0; j < this->width; j++) {
+        for (int j = 0; j < this->width; j++) {
             Cell current = *getCell(i, j);
             // If ENTER has been pressed, we show under the cursor the current
             // cell value

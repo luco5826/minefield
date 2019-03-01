@@ -2,7 +2,9 @@
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
-Game::Game(const int width, const int height, const int mines, const bool arrowKeys) : arrowKeys(arrowKeys) {
+Game::Game(const int width, const int height, const int mines, const bool arrowKeys, const bool mousePointer)
+    : arrowKeys(arrowKeys),
+      mousePointer(mousePointer) {
     // Negative values check
     if (width <= 0 || height <= 0 || mines <= 0) {
         throw std::invalid_argument(_("Width or height or mines number cannot be negative or zero!"));
@@ -37,6 +39,8 @@ bool Game::userHasWon() {
 void Game::userInput() {
     if (this->arrowKeys) {
         this->userInputKeys();
+    } else if (this->mousePointer) {
+        this->userInputMouse();
     } else {
         this->userInputCLI();
     }
@@ -52,7 +56,7 @@ void Game::userInputKeys() {
         case 'F':
             this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::FLAG);
             break;
-        case 10:  // Enter key           
+        case 10:  // Enter key
             this->minePressed = this->field->selectCell(cursorPos.y, cursorPos.x, Field::SelectOption::REVEAL);
             break;
         case KEY_LEFT:
@@ -77,6 +81,23 @@ void Game::userInputKeys() {
             break;
         default:
             break;
+    }
+}
+
+void Game::userInputMouse() {
+    MEVENT event;
+
+    while (1) {
+        int c = wgetch(stdscr);
+        if (c == KEY_MOUSE && getmouse(&event) == OK) {
+            if (event.bstate & BUTTON1_CLICKED) {  // Left click shows a cell
+                this->minePressed = this->field->selectCell(event.y - 2, (event.x - 7) / 5, Field::SelectOption::REVEAL);
+                break;
+            } else if (event.bstate & BUTTON3_CLICKED) {  // Right click flags it
+                this->field->selectCell(event.y - 2, (event.x - 7) / 5, Field::SelectOption::FLAG);
+                break;
+            }
+        }
     }
 }
 

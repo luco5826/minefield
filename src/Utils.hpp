@@ -11,9 +11,10 @@ void printHelp() {
     std::cout << _("Usage: ./minefield [options]") << std::endl;
     std::cout << std::endl;
     std::cout << _("OPTIONS") << std::endl;
-    std::cout << _("--help, -h        Shows usage and exits") << std::endl;
-    std::cout << _("--keys, -k        Play Minefield moving around the field with your arrow keys") << std::endl;
-    std::cout << _("--input, -i       [DEFAULT] Play Minefield by writing each time the ROW,COLUMN coordinate of the cell") << std::endl;
+    std::cout << _("--help,  -h        Shows usage and exits") << std::endl;
+    std::cout << _("--keys,  -k        Play Minefield moving around the field with your arrow keys") << std::endl;
+    std::cout << _("--mouse, -m        Play Minefield clicking on the cells like a normal GUI") << std::endl;
+    std::cout << _("--input, -i        [DEFAULT] Play Minefield by writing each time the ROW,COLUMN coordinate of the cell") << std::endl;
     std::cout << std::endl;
 }
 
